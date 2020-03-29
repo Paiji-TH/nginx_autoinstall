@@ -460,17 +460,17 @@ case $OPTION in
 
 		# Nginx installation from source does not add an init script for systemd and logrotate
 		# Using the official systemd script and logrotate conf from nginx.org
-		#if [[ ! -e /lib/systemd/system/nginx.service ]]; then
-		#	cd /lib/systemd/system/ || exit 1
-		#	wget https://raw.githubusercontent.com/amournet/nginx_autoinstall/master/conf/nginx.service
+		if [[ ! -e /lib/systemd/system/nginx.service ]]; then
+			cd /lib/systemd/system/ || exit 1
+			wget https://raw.githubusercontent.com/amournet/nginx_autoinstall/master/conf/nginx.service
 			# Enable nginx start at boot
-		#	systemctl enable nginx
-		#fi
+			systemctl enable nginx
+		fi
 
-		#if [[ ! -e /etc/logrotate.d/nginx ]]; then
-		#	cd /etc/logrotate.d/ || exit 1
-		#	wget https://raw.githubusercontent.com/amournet/nginx_autoinstall/master/conf/nginx-logrotate -O nginx
-		#fi
+		if [[ ! -e /etc/logrotate.d/nginx ]]; then
+			cd /etc/logrotate.d/ || exit 1
+			wget https://raw.githubusercontent.com/amournet/nginx_autoinstall/master/conf/nginx-logrotate -O nginx
+		fi
 
 		# Nginx's cache directory is not created by default
 		if [[ ! -d /var/cache/nginx ]]; then
